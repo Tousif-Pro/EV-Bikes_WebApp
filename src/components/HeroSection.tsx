@@ -45,11 +45,16 @@ const HeroSection = () => {
   }, []);
 
   useEffect(() => {
-    setIsVisible(true);
+    // Short delay to trigger entrance animations
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <section id="home" ref={heroRef} className="relative min-h-screen overflow-hidden pt-24">
+    <section id="home" ref={heroRef} className="relative min-h-screen overflow-hidden pt-20">
       {/* Background elements with parallax effects */}
       <div className="absolute inset-0 -z-10">
         <div 
@@ -66,7 +71,7 @@ const HeroSection = () => {
         ></div>
       </div>
 
-      <div className="container max-w-7xl mx-auto px-6 h-full relative">
+      <div className="container max-w-7xl mx-auto px-6 pt-6 h-full relative">
         {/* Decorative elements */}
         <div 
           className="absolute top-24 left-0 w-24 h-24 rounded-full border border-brand-teal/20 animate-float-slow opacity-70"
@@ -92,7 +97,7 @@ const HeroSection = () => {
             ref={parallaxRef1}
           >
             <div className="space-y-2">
-              <div className="inline-block premium-glass shine-effect px-4 py-1.5 rounded-full mb-4 animate-fade-in opacity-0" style={{ animationDelay: '0.3s' }}>
+              <div className="inline-block premium-glass shine-effect px-4 py-1.5 rounded-full mb-4 animate-fade-up opacity-0 stagger-delay-1">
                 <div className="flex items-center space-x-2">
                   <span className="flex h-2 w-2 relative">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-75"></span>
@@ -103,12 +108,12 @@ const HeroSection = () => {
               </div>
               
               <h1 className={cn(
-                "banner-text text-5xl md:text-6xl lg:text-7xl animate-fade-in opacity-0",
+                "banner-text text-5xl md:text-6xl lg:text-7xl animate-fade-up opacity-0 stagger-delay-2",
                 inView1 ? "animate-scale-in" : ""
-              )} style={{ animationDelay: '0.5s' }}>
+              )}>
                 RIDE THE
                 <br />
-                <span className="gradient-text relative">
+                <span className="gradient-text relative premium-shadow">
                   FUTURE
                   <span className="absolute -top-6 -right-6 text-xl text-brand-teal animate-float-slow">
                     <Sparkles className="h-5 w-5" />
@@ -116,17 +121,17 @@ const HeroSection = () => {
                 </span>
               </h1>
               
-              <div className="decorative-line mt-4 mb-6 animate-fade-in opacity-0 w-32" style={{ animationDelay: '0.6s' }}></div>
+              <div className="decorative-line mt-4 mb-6 animate-fade-up opacity-0 stagger-delay-3 w-32"></div>
               
-              <p className="mt-4 text-lg text-foreground/80 max-w-md animate-fade-in opacity-0" style={{ animationDelay: '0.7s' }}>
+              <p className="mt-4 text-lg text-foreground/80 max-w-md animate-fade-up opacity-0 stagger-delay-4">
                 Experience the perfect fusion of <span className="font-semibold text-brand-teal">advanced technology</span>, 
                 <span className="font-semibold text-brand-mint"> sustainable design</span>, and 
                 <span className="font-semibold text-brand-dark-blue"> unparalleled performance</span> for the modern urban commuter.
               </p>
               
-              <div className="pt-8 flex flex-wrap gap-4 animate-fade-in opacity-0" style={{ animationDelay: '0.9s' }}>
+              <div className="pt-8 flex flex-wrap gap-4 animate-fade-up opacity-0 stagger-delay-5">
                 <Button 
-                  className="bg-brand-teal hover:bg-brand-teal/90 text-white px-8 py-6 rounded-md btn-hover-effect group shine-effect"
+                  className="bg-brand-teal hover:bg-brand-teal/90 text-white px-8 py-6 rounded-md btn-hover-effect group shine-effect animate-pulse-glow"
                   size="lg"
                 >
                   <span>PRE-ORDER</span>
@@ -135,7 +140,7 @@ const HeroSection = () => {
                 
                 <Button 
                   variant="outline" 
-                  className="border-brand-dark-blue text-brand-dark-blue hover:text-brand-dark-blue/90 hover:bg-brand-dark-blue/10 px-8 py-6 rounded-md"
+                  className="border-brand-dark-blue text-brand-dark-blue hover:text-brand-dark-blue/90 hover:bg-brand-dark-blue/10 px-8 py-6 rounded-md transition-all duration-300"
                   size="lg"
                 >
                   DISCOVER MORE
@@ -144,9 +149,9 @@ const HeroSection = () => {
             </div>
             
             {/* Quick features */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-fade-in opacity-0" style={{ animationDelay: '1.1s' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 animate-fade-up opacity-0 stagger-delay-5">
               {stats.map((stat, index) => (
-                <div key={index} className="stat-card flex flex-col items-center justify-center space-y-1 group perspective-card">
+                <div key={index} className="stat-card flex flex-col items-center justify-center space-y-1 group perspective-card premium-shadow">
                   <div className="card-content">
                     <div className="flex items-center justify-center mb-2">
                       {stat.icon}
@@ -177,7 +182,7 @@ const HeroSection = () => {
                 <img
                   src="https://images.unsplash.com/photo-1557254719-da117996c2e8?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3"
                   alt="Premium Electric Bike"
-                  className="max-w-full h-auto object-cover rounded-2xl shadow-2xl shine-effect transform-3d"
+                  className="max-w-full h-auto object-cover rounded-2xl shadow-2xl shine-effect transform-3d premium-shadow-lg"
                 />
                 
                 {/* "e∞" overlay text */}
@@ -188,7 +193,7 @@ const HeroSection = () => {
                 {/* Floating elements that move independently */}
                 <div className="absolute w-full h-full top-0 left-0 overflow-hidden rounded-2xl">
                   <div 
-                    className="absolute top-[30%] right-[-5%] premium-glass px-4 py-2 shine-effect transform-3d"
+                    className="absolute top-[30%] right-[-5%] premium-glass px-4 py-2 shine-effect transform-3d animate-fade-up opacity-0 stagger-delay-3"
                     style={{ transform: `translate3d(${-scrollProgress * 20}px, ${scrollProgress * 10}px, ${scrollProgress * 50}px)` }}
                   >
                     <div className="flex items-center space-x-2">
@@ -198,7 +203,7 @@ const HeroSection = () => {
                   </div>
                   
                   <div 
-                    className="absolute bottom-[20%] left-[-5%] premium-glass px-4 py-2 shine-effect transform-3d"
+                    className="absolute bottom-[20%] left-[-5%] premium-glass px-4 py-2 shine-effect transform-3d animate-fade-up opacity-0 stagger-delay-4"
                     style={{ transform: `translate3d(${scrollProgress * 20}px, ${-scrollProgress * 10}px, ${scrollProgress * 30}px)` }}
                   >
                     <div className="flex items-center space-x-2">
@@ -212,13 +217,11 @@ const HeroSection = () => {
               {/* Floating badge with 3D transform */}
               <div 
                 className={cn(
-                  "absolute -bottom-10 right-10 premium-glass px-5 py-3 rounded-xl shadow-xl shine-effect transform-3d",
+                  "absolute -bottom-10 right-10 premium-glass px-5 py-3 rounded-xl shadow-xl shine-effect transform-3d animate-fade-up opacity-0 stagger-delay-5",
                   inView2 ? "animate-fade-in-right" : ""
                 )}
                 style={{ 
                   transform: `translate3d(${-scrollProgress * 30}px, ${scrollProgress * 20}px, ${scrollProgress * 40}px) rotateY(${-scrollProgress * 10}deg)`,
-                  opacity: isVisible ? 1 : 0,
-                  transition: "all 0.7s ease-out 0.8s"
                 }}
               >
                 <div className="flex items-center space-x-3">
@@ -236,7 +239,7 @@ const HeroSection = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-fade-in opacity-0" style={{ animationDelay: '1.7s' }}>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-fade-up opacity-0 stagger-delay-5">
           <span className="mb-2 text-xs uppercase tracking-wider text-foreground/60">Scroll to Explore</span>
           <div className="h-12 w-0.5 bg-foreground/20 animate-pulse"></div>
           <ChevronDown className="h-4 w-4 mt-1 animate-bounce" />
