@@ -37,7 +37,7 @@ const GallerySection = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  const { ref, inView } = useInView({
+  const { ref: inViewRef, inView } = useInView({
     triggerOnce: false,
     threshold: 0.1
   });
@@ -46,6 +46,16 @@ const GallerySection = () => {
     triggerOnce: false,
     threshold: 0.5
   });
+
+  // Combine refs for the section
+  const setRefs = (element: HTMLDivElement | null) => {
+    // Update the sectionRef
+    sectionRef.current = element;
+    // Update the inViewRef
+    if (typeof inViewRef === 'function') {
+      inViewRef(element);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,14 +85,18 @@ const GallerySection = () => {
   };
 
   return (
-    <section id="gallery" ref={sectionRef} className="section-spacing relative bg-brand-black text-white py-32" ref={ref}>
+    <section 
+      id="gallery" 
+      ref={setRefs} 
+      className="section-spacing relative bg-gradient-to-b from-brand-dark-blue/95 to-brand-mint/30 text-white py-32"
+    >
       {/* Decorative elements with parallax effect */}
       <div 
         className="absolute top-24 left-20 w-24 h-24 rounded-full border border-brand-teal/20 animate-float-slow opacity-30"
         style={{ transform: `translateY(${scrollProgress * 50}px)` }}
       ></div>
       <div 
-        className="absolute bottom-48 right-24 w-16 h-16 rounded-full border border-mint/20 animate-float-slow opacity-30" 
+        className="absolute bottom-48 right-24 w-16 h-16 rounded-full border border-brand-mint/20 animate-float-slow opacity-30" 
         style={{ animationDelay: '1s', transform: `translateY(${-scrollProgress * 30}px)` }}
       ></div>
       
@@ -155,7 +169,7 @@ const GallerySection = () => {
                 />
                 
                 {/* Caption overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-8">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-dark-blue/90 via-brand-dark-blue/50 to-transparent p-8">
                   <div className="max-w-7xl mx-auto">
                     <div className="flex items-start">
                       <div className="mr-auto">
@@ -180,14 +194,14 @@ const GallerySection = () => {
             
             {/* Navigation arrows with glass effect */}
             <button
-              className="absolute top-1/2 left-4 transform -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 backdrop-blur-md hover:bg-black/50 flex items-center justify-center transition-all duration-300 border border-white/10 z-20"
+              className="absolute top-1/2 left-4 transform -translate-y-1/2 h-12 w-12 rounded-full bg-brand-dark-blue/30 backdrop-blur-md hover:bg-brand-dark-blue/50 flex items-center justify-center transition-all duration-300 border border-white/10 z-20"
               onClick={prevImage}
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             
             <button
-              className="absolute top-1/2 right-4 transform -translate-y-1/2 h-12 w-12 rounded-full bg-black/30 backdrop-blur-md hover:bg-black/50 flex items-center justify-center transition-all duration-300 border border-white/10 z-20"
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 h-12 w-12 rounded-full bg-brand-dark-blue/30 backdrop-blur-md hover:bg-brand-dark-blue/50 flex items-center justify-center transition-all duration-300 border border-white/10 z-20"
               onClick={nextImage}
             >
               <ChevronRight className="h-5 w-5" />
