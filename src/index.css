@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    --background: 185 53% 94%;
+    --background: 185 33% 97%;
     --foreground: 240 10% 3.9%;
 
     --card: 0 0% 100%;
@@ -44,7 +44,7 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    @apply bg-background text-foreground antialiased overflow-x-hidden font-sans;
   }
 
   .hero-mask {
@@ -60,8 +60,12 @@
     @apply bg-white/20 backdrop-blur-md border border-white/30 rounded-xl shadow-sm;
   }
 
+  .premium-glass {
+    @apply bg-white/15 backdrop-blur-xl border border-white/30 rounded-2xl shadow-lg;
+  }
+
   .stat-card {
-    @apply glass-card px-6 py-4 flex flex-col items-center justify-center transition-all duration-300 hover:bg-white/30;
+    @apply premium-glass px-6 py-4 flex flex-col items-center justify-center transition-all duration-300 hover:bg-white/30;
   }
 
   /* Hover effect for buttons */
@@ -108,7 +112,7 @@
 
   /* Feature card styling */
   .feature-card {
-    @apply glass-card p-6 transition-all duration-300 hover:translate-y-[-5px];
+    @apply premium-glass p-6 transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl;
   }
   
   .section-spacing {
@@ -121,5 +125,89 @@
   
   .section-subtitle {
     @apply text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto mb-12;
+  }
+
+  /* Premium text styling */
+  .elegant-title {
+    @apply font-playfair font-semibold tracking-tight;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-teal via-brand-dark-blue to-brand-mint;
+  }
+
+  /* Advanced card styling */
+  .premium-card {
+    @apply relative overflow-hidden premium-glass p-8 transition-all duration-500 border border-white/30;
+  }
+  
+  .premium-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300;
+  }
+  
+  .premium-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Decorative elements */
+  .decorative-line {
+    @apply w-20 h-1 bg-gradient-to-r from-brand-teal to-brand-mint rounded-full;
+  }
+
+  /* Image styling */
+  .premium-image {
+    @apply rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl;
+  }
+  
+  .image-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-brand-black/60 to-transparent opacity-0 transition-opacity duration-300;
+  }
+  
+  .premium-image:hover .image-overlay {
+    @apply opacity-100;
+  }
+
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    animation: shine 6s infinite linear;
+  }
+  
+  @keyframes shine {
+    from {
+      transform: translateX(-100%) rotate(30deg);
+    }
+    to {
+      transform: translateX(100%) rotate(30deg);
+    }
+  }
+
+  /* Floating animation for decorative elements */
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(1deg); }
+    50% { transform: translateY(-15px) rotate(-1deg); }
+    75% { transform: translateY(-5px) rotate(1deg); }
+  }
+  
+  .animate-float-slow {
+    animation: float-slow 12s ease-in-out infinite;
   }
 }

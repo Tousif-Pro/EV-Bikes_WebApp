@@ -1,5 +1,4 @@
 
-import { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { 
   Battery, 
@@ -7,7 +6,8 @@ import {
   Shield, 
   Smartphone, 
   Globe, 
-  Wind
+  Wind,
+  Sparkles
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -58,21 +58,33 @@ const FeaturesSection = () => {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-brand-light-blue/20 blur-3xl hero-mask"></div>
       </div>
 
+      {/* Decorative elements */}
+      <div className="absolute top-24 right-20 w-24 h-24 rounded-full border border-brand-teal/20 animate-float-slow opacity-70"></div>
+      <div className="absolute bottom-48 left-24 w-16 h-16 rounded-full border border-brand-mint/20 animate-float-slow opacity-70" style={{ animationDelay: '1s' }}></div>
+
       <div className="container max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className={cn(
-            "inline-block glass px-4 py-1.5 rounded-full mb-4 transition-all duration-500",
+            "inline-block premium-glass shine-effect px-4 py-1.5 rounded-full mb-4 transition-all duration-500",
             inView ? "opacity-100" : "opacity-0 transform translate-y-4"
           )}>
-            <span className="text-sm font-medium">Cutting-Edge Technology</span>
+            <span className="text-sm font-medium flex items-center">
+              <Sparkles className="h-4 w-4 mr-2 text-brand-teal" />
+              Cutting-Edge Technology
+            </span>
           </div>
           
           <h2 className={cn(
             "section-title transition-all duration-500 delay-100",
             inView ? "opacity-100" : "opacity-0 transform translate-y-4"
           )}>
-            Designed for the Modern Commuter
+            Engineered for the <span className="gradient-text">Modern Commuter</span>
           </h2>
+          
+          <div className={cn(
+            "decorative-line mx-auto my-4 transition-all duration-500 delay-150",
+            inView ? "opacity-100" : "opacity-0 transform translate-y-4"
+          )}></div>
           
           <p className={cn(
             "section-subtitle transition-all duration-500 delay-200",
@@ -103,10 +115,10 @@ const FeatureCard = ({ feature, index, inView }) => {
   
   return (
     <div className={cn(
-      "feature-card transition-all duration-500",
+      "feature-card shine-effect transition-all duration-500",
       inView ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"
     )} style={{ transitionDelay: `${delay}ms` }}>
-      <div className="mb-4 p-3 bg-brand-teal/10 inline-block rounded-md text-brand-teal">
+      <div className="mb-4 p-3 bg-gradient-to-br from-brand-teal/20 to-brand-mint/10 inline-block rounded-md text-brand-teal">
         {feature.icon}
       </div>
       <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
