@@ -1,8 +1,17 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, Search } from 'lucide-react';
+import { Menu, X, ChevronRight, Search, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle
+} from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,11 +29,13 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-10 py-4',
-        isScrolled ? 'bg-white/10 backdrop-blur-lg shadow-sm' : 'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3',
+        isScrolled 
+          ? 'bg-white/8 backdrop-blur-lg shadow-sm border-b border-white/10' 
+          : 'bg-transparent'
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 lg:px-8">
         <div className="flex items-center">
           {/* Logo */}
           <a href="#" className="relative z-10 flex items-center">
@@ -39,29 +50,132 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-1">
-          <NavLink href="#home">HOME</NavLink>
-          <NavLink href="#products">PRODUCTS</NavLink>
-          <NavLink href="#gallery">GALLERY</NavLink>
-          <NavLink href="#features">FEATURES</NavLink>
-          <NavLink href="#contact">CONTACT</NavLink>
-        </nav>
+        <NavigationMenu className="hidden lg:flex">
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink 
+                href="#home"
+                className={cn(
+                  "px-4 py-2 text-sm font-medium text-foreground hover:text-brand-teal transition-colors hover:bg-transparent focus:bg-transparent",
+                )}
+              >
+                HOME
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            
+            <NavigationMenuItem>
+              <NavigationMenuLink 
+                href="#products"
+                className={cn(
+                  "px-4 py-2 text-sm font-medium text-foreground hover:text-brand-teal transition-colors hover:bg-transparent focus:bg-transparent",
+                )}
+              >
+                PRODUCTS
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            
+            <NavigationMenuItem>
+              <NavigationMenuTrigger 
+                className="px-4 py-2 text-sm font-medium text-foreground hover:text-brand-teal transition-colors hover:bg-transparent focus:bg-transparent bg-transparent"
+              >
+                GALLERY
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      <a
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-brand-teal/20 to-brand-mint/20 p-6 no-underline outline-none focus:shadow-md"
+                        href="#gallery"
+                      >
+                        <div className="mt-4 mb-2 text-lg font-medium">
+                          Premium Collection
+                        </div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Explore our premium electric bike collection through stunning visuals
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <a href="#gallery" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div className="text-sm font-medium leading-none">Urban Series</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Perfect for city commuting
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <a href="#gallery" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div className="text-sm font-medium leading-none">Adventure Series</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Built for off-road exploration
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <a href="#gallery" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                        <div className="text-sm font-medium leading-none">Performance Series</div>
+                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                          Maximum speed and efficiency
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            
+            <NavigationMenuItem>
+              <NavigationMenuLink 
+                href="#features"
+                className={cn(
+                  "px-4 py-2 text-sm font-medium text-foreground hover:text-brand-teal transition-colors hover:bg-transparent focus:bg-transparent",
+                )}
+              >
+                FEATURES
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            
+            <NavigationMenuItem>
+              <NavigationMenuLink 
+                href="#contact"
+                className={cn(
+                  "px-4 py-2 text-sm font-medium text-foreground hover:text-brand-teal transition-colors hover:bg-transparent focus:bg-transparent",
+                )}
+              >
+                CONTACT
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
         {/* Right elements */}
-        <div className="hidden md:flex items-center space-x-4">
-          <Button variant="ghost" size="icon">
+        <div className="hidden lg:flex items-center space-x-4">
+          <Button variant="ghost" size="icon" className="text-foreground hover:text-brand-teal transition-colors hover:bg-transparent">
             <Search className="h-5 w-5" />
           </Button>
           <Button 
-            className="bg-brand-teal hover:bg-brand-teal/90 text-white rounded-md transition-all duration-300"
+            className="border border-brand-teal/60 bg-transparent hover:bg-brand-teal/10 text-foreground hover:text-brand-teal rounded-md transition-all duration-300"
           >
             LOGIN
+          </Button>
+          <Button 
+            className="bg-brand-teal hover:bg-brand-teal/90 text-white rounded-md transition-all duration-300 group"
+          >
+            GET STARTED
+            <ArrowUpRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Button>
         </div>
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-2 rounded-md"
+          className="lg:hidden p-2 rounded-md"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -71,14 +185,14 @@ const Navbar = () => {
       {/* Mobile menu */}
       <div
         className={cn(
-          'fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden transition-opacity duration-300',
+          'fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden transition-opacity duration-300',
           isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         )}
         onClick={() => setIsMobileMenuOpen(false)}
       />
       <div
         className={cn(
-          'fixed top-0 right-0 h-full w-3/4 max-w-sm bg-white z-50 transform transition-transform duration-300 ease-in-out md:hidden overflow-y-auto',
+          'fixed top-0 right-0 h-full w-3/4 max-w-sm bg-white/10 backdrop-blur-xl z-50 transform transition-transform duration-300 ease-in-out lg:hidden overflow-y-auto border-l border-white/20',
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
@@ -104,22 +218,17 @@ const Navbar = () => {
             >
               LOGIN
             </Button>
+            <Button 
+              variant="outline"
+              className="border border-brand-teal/60 bg-transparent hover:bg-brand-teal/10 text-foreground w-full"
+            >
+              GET STARTED
+              <ArrowUpRight className="h-4 w-4 ml-1" />
+            </Button>
           </div>
         </div>
       </div>
     </header>
-  );
-};
-
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
-  return (
-    <a
-      href={href}
-      className="relative px-3 py-2 text-sm font-medium text-foreground transition-colors hover:text-brand-teal group"
-    >
-      {children}
-      <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-brand-teal transition-all duration-300 group-hover:w-full"></span>
-    </a>
   );
 };
 
@@ -128,7 +237,7 @@ const MobileNavLink = ({ href, onClick, children }: { href: string; onClick: () 
     <a
       href={href}
       onClick={onClick}
-      className="flex items-center justify-between py-2 text-foreground hover:text-brand-teal transition-colors"
+      className="flex items-center justify-between py-2 text-foreground hover:text-brand-teal transition-colors border-b border-white/10 pb-2"
     >
       {children}
       <ChevronRight className="h-5 w-5" />

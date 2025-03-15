@@ -46,12 +46,42 @@
   body {
     @apply bg-background text-foreground antialiased overflow-x-hidden font-sans;
   }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
 
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brand-teal/40 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-teal/60;
+  }
+  
+  /* Hide scrollbar for specific elements */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Hero section mask */
   .hero-mask {
     -webkit-mask-image: radial-gradient(rgba(0, 0, 0, 0.7), transparent 70%);
     mask-image: radial-gradient(rgba(0, 0, 0, 0.7), transparent 70%);
   }
 
+  /* Glass morphism styles */
   .glass {
     @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl;
   }
@@ -65,7 +95,39 @@
   }
 
   .stat-card {
-    @apply premium-glass px-6 py-4 flex flex-col items-center justify-center transition-all duration-300 hover:bg-white/30;
+    @apply premium-glass px-6 py-4 transition-all duration-300 hover:bg-white/20;
+  }
+
+  /* 3D Effects */
+  .perspective-3d {
+    perspective: 1500px;
+  }
+  
+  .transform-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .perspective-card {
+    perspective: 800px;
+    transform-style: preserve-3d;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .perspective-card:hover {
+    transform: scale(1.02) translateY(-5px);
+  }
+  
+  .perspective-card:hover .card-content {
+    transform: rotateY(5deg) rotateX(5deg);
+  }
+  
+  .card-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
   }
 
   /* Hover effect for buttons */
@@ -168,6 +230,7 @@
     @apply opacity-100;
   }
 
+  /* Shine effect */
   .shine-effect {
     position: relative;
     overflow: hidden;
@@ -209,5 +272,10 @@
   
   .animate-float-slow {
     animation: float-slow 12s ease-in-out infinite;
+  }
+  
+  /* Scroll stack effect animations */
+  .scroll-stagger-item {
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   }
 }
