@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight, Search, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -28,7 +27,7 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 w-full',
+        'sticky top-0 z-50 transition-all duration-500 py-4 w-full',
         isScrolled 
           ? 'bg-white/10 backdrop-blur-lg shadow-md border-b border-white/10' 
           : 'bg-transparent'
@@ -39,9 +38,9 @@ const Navbar = () => {
           {/* Logo */}
           <a href="#" className="relative z-10 flex items-center">
             <div className="flex items-center">
-              <div className="text-brand-teal text-3xl font-bold mr-1 shine-effect">
+              <div className="text-brand-teal text-5xl font-bold mr-1 shine-effect">
                 <span className="flex items-center">
-                  e<span className="text-2xl">∞</span>
+                  e<span className="text-4xl">∞</span>
                 </span>
               </div>
             </div>
@@ -53,91 +52,31 @@ const Navbar = () => {
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink 
-                href="#home"
+                href="/"
                 className="nav-link"
               >
                 HOME
               </NavigationMenuLink>
             </NavigationMenuItem>
-            
             <NavigationMenuItem>
               <NavigationMenuLink 
-                href="#products"
+                href="/products"
                 className="nav-link"
               >
                 PRODUCTS
               </NavigationMenuLink>
             </NavigationMenuItem>
-            
-            <NavigationMenuItem>
-              <NavigationMenuTrigger 
-                className="nav-link bg-transparent"
-              >
-                GALLERY
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                  <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-brand-teal/20 to-brand-mint/20 p-6 no-underline outline-none focus:shadow-md transform transition-all duration-300 hover:scale-[1.02]"
-                        href="#gallery"
-                      >
-                        <div className="mt-4 mb-2 text-lg font-medium">
-                          Premium Collection
-                        </div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Explore our premium electric bike collection through stunning visuals
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink asChild>
-                      <a href="#gallery" className="nav-dropdown-item">
-                        <div className="text-sm font-medium leading-none">Urban Series</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Perfect for city commuting
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink asChild>
-                      <a href="#gallery" className="nav-dropdown-item">
-                        <div className="text-sm font-medium leading-none">Adventure Series</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Built for off-road exploration
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink asChild>
-                      <a href="#gallery" className="nav-dropdown-item">
-                        <div className="text-sm font-medium leading-none">Performance Series</div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          Maximum speed and efficiency
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            
             <NavigationMenuItem>
               <NavigationMenuLink 
-                href="#features"
+                href="/features"
                 className="nav-link"
               >
                 FEATURES
               </NavigationMenuLink>
             </NavigationMenuItem>
-            
             <NavigationMenuItem>
               <NavigationMenuLink 
-                href="#contact"
+                href="/contact"
                 className="nav-link"
               >
                 CONTACT
@@ -153,6 +92,7 @@ const Navbar = () => {
           </Button>
           <Button 
             className="border border-brand-teal/60 bg-transparent hover:bg-brand-teal/10 text-foreground hover:text-brand-teal rounded-md transition-all duration-300"
+            onClick={() => window.location.href = '/login'}
           >
             LOGIN
           </Button>
@@ -173,7 +113,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu overlay */}
       <div
         className={cn(
           'fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden transition-opacity duration-300',
@@ -201,7 +141,6 @@ const Navbar = () => {
           <div className="flex flex-col space-y-4">
             <MobileNavLink href="#home" onClick={() => setIsMobileMenuOpen(false)}>Home</MobileNavLink>
             <MobileNavLink href="#products" onClick={() => setIsMobileMenuOpen(false)}>Products</MobileNavLink>
-            <MobileNavLink href="#gallery" onClick={() => setIsMobileMenuOpen(false)}>Gallery</MobileNavLink>
             <MobileNavLink href="#features" onClick={() => setIsMobileMenuOpen(false)}>Features</MobileNavLink>
             <MobileNavLink href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</MobileNavLink>
             <Button 

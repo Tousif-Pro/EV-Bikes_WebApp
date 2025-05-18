@@ -21,7 +21,7 @@ const DesignSection = () => {
           )}>
             <div className="relative rounded-2xl overflow-hidden premium-image shine-effect">
               <img 
-                src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3" 
+                src="/image 2.jpg" 
                 alt="Electric Bike Design" 
                 className="w-full h-auto object-cover"
               />
