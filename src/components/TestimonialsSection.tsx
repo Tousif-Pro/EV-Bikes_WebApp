@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
@@ -43,7 +42,6 @@ const TestimonialsSection = () => {
     setActiveIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
   };
 
-  // Auto-rotate testimonials
   useEffect(() => {
     if (!inView) return;
     
@@ -55,128 +53,95 @@ const TestimonialsSection = () => {
   }, [inView]);
 
   return (
-    <section id="testimonials" className="section-spacing relative" ref={ref}>
-      {/* Background elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-brand-mint/20 blur-3xl hero-mask"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-brand-light-blue/20 blur-3xl hero-mask"></div>
-      </div>
+    <section id="testimonials" className="relative py-20 bg-white overflow-hidden" ref={ref}>
+  {/* Background Styling */}
+  <div className="absolute inset-0 -z-10 flex justify-center items-center">
+    <div className="w-64 h-64 rounded-full bg-brand-mint/20 blur-3xl absolute top-10 right-20"></div>
+    <div className="w-64 h-64 rounded-full bg-brand-light-blue/20 blur-3xl absolute bottom-10 left-20"></div>
+  </div>
 
-      <div className="container max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className={cn(
-            "inline-block glass px-4 py-1.5 rounded-full mb-4 transition-all duration-500",
-            inView ? "opacity-100" : "opacity-0 transform translate-y-4"
-          )}>
-            <span className="text-sm font-medium">What Our Riders Say</span>
-          </div>
-          
-          <h2 className={cn(
-            "section-title transition-all duration-500 delay-100",
-            inView ? "opacity-100" : "opacity-0 transform translate-y-4"
-          )}>
-            Trusted by Urban Commuters
-          </h2>
-          
-          <p className={cn(
-            "section-subtitle transition-all duration-500 delay-200",
-            inView ? "opacity-100" : "opacity-0 transform translate-y-4"
-          )}>
-            Hear from our community of riders who have experienced the difference 
-            our electric bikes make in their daily lives.
-          </p>
-        </div>
+  <div className="container max-w-5xl mx-auto px-6">
+    {/* Section Header */}
+    <div className="text-center mb-16">
+      <span className={cn("inline-block bg-white shadow-md px-4 py-1.5 rounded-full mb-4 text-brand-teal font-medium", inView ? "opacity-100" : "opacity-0 translate-y-4 transition-all duration-500")}>
+        What Our Riders Say
+      </span>
+      <h2 className={cn("text-4xl font-bold text-gray-900 mb-4", inView ? "opacity-100" : "opacity-0 translate-y-4 transition-all duration-500 delay-100")}>
+        Trusted by Urban Commuters
+      </h2>
+      <p className={cn("text-lg text-gray-600 max-w-2xl mx-auto", inView ? "opacity-100" : "opacity-0 translate-y-4 transition-all duration-500 delay-200")}>
+        Hear from our community of riders who have experienced the difference our electric bikes make in their daily lives.
+      </p>
+    </div>
 
-        <div className={cn(
-          "relative max-w-4xl mx-auto transition-all duration-700 delay-300",
-          inView ? "opacity-100" : "opacity-0 scale-95"
-        )}>
-          {/* Large quote mark */}
-          <div className="absolute -top-10 -left-8 text-brand-teal/20">
-            <Quote className="h-24 w-24" />
-          </div>
-          
-          {/* Testimonial cards */}
-          <div className="relative">
-            {testimonials.map((testimonial, index) => (
-              <div 
-                key={index}
-                className={cn(
-                  "glass-card p-8 md:p-10 transition-all duration-500 absolute inset-0",
-                  index === activeIndex 
-                    ? "opacity-100 transform translate-x-0" 
-                    : index < activeIndex 
-                      ? "opacity-0 transform -translate-x-8" 
-                      : "opacity-0 transform translate-x-8"
-                )}
-              >
-                <div className="flex flex-col space-y-6">
-                  {/* Stars */}
-                  <div className="flex">
-                    {Array(5).fill(0).map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={cn(
-                          "h-5 w-5 mr-1", 
-                          i < testimonial.stars ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
-                        )} 
-                      />
-                    ))}
+    {/* Testimonial Slider */}
+    <div className="relative mx-auto max-w-4xl">
+      <div className="relative min-h-[400px] flex items-center justify-center">
+        {testimonials.map((testimonial, index) => (
+          <div
+            key={index}
+            className={cn(
+              "absolute w-full transition-opacity duration-700 ease-in-out",
+              index === activeIndex ? "opacity-100" : "opacity-0"
+            )}
+          >
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                {/* Testimonial Image */}
+                <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.author}
+                    className="w-full h-full rounded-full object-cover border-4 border-brand-teal shadow-sm"
+                  />
+                </div>
+
+                {/* Testimonial Content */}
+                <div className="text-center md:text-left relative">
+                  {/* Double Quotes */}
+                  <span className="absolute -top-6 -left-6 text-6xl text-brand-teal opacity-50 transform -translate-y-2">“</span>
+                  <span className="absolute -bottom-6 -right-6 text-6xl text-brand-teal opacity-50 transform translate-y-2">”</span>
+
+                  {/* Feedback */}
+                  <p className="text-lg md:text-xl italic text-gray-800 leading-relaxed pl-8 pr-8">
+                    {testimonial.quote}
+                  </p>
+
+                  {/* Author Details */}
+                  <div className="mt-6">
+                    <h4 className="font-semibold text-gray-900 text-lg">{testimonial.author}</h4>
+                    <p className="text-sm text-gray-500">{testimonial.role}</p>
                   </div>
-                  
-                  {/* Quote */}
-                  <p className="text-lg md:text-xl italic">"{testimonial.quote}"</p>
-                  
-                  {/* Author info */}
-                  <div className="flex items-center">
-                    <img 
-                      src={testimonial.avatar} 
-                      alt={testimonial.author} 
-                      className="h-12 w-12 rounded-full mr-4 object-cover"
-                    />
-                    <div>
-                      <h4 className="font-semibold">{testimonial.author}</h4>
-                      <p className="text-sm text-foreground/70">{testimonial.role}</p>
-                    </div>
+
+                  {/* Star Rating */}
+                  <div className="flex justify-center md:justify-start mt-4">
+                    {Array(5).fill(0).map((_, i) => (
+                      <Star key={i} className={cn("h-5 w-5", i < testimonial.stars ? "text-yellow-400 fill-yellow-400" : "text-gray-300")} />
+                    ))}
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
-          
-          {/* Navigation dots */}
-          <div className="flex justify-center mt-80 md:mt-72 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                className={cn(
-                  "h-2.5 w-2.5 rounded-full transition-all duration-300",
-                  index === activeIndex ? "bg-brand-teal w-8" : "bg-brand-teal/30"
-                )}
-                onClick={() => setActiveIndex(index)}
-              />
-            ))}
-          </div>
-          
-          {/* Navigation buttons */}
-          <div className="absolute top-1/2 -mt-20 left-0 right-0 flex justify-between items-center px-4">
-            <button
-              className="h-10 w-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-all duration-300"
-              onClick={prevTestimonial}
-            >
-              <ChevronLeft className="h-5 w-5 text-brand-teal" />
-            </button>
-            
-            <button
-              className="h-10 w-10 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow-md transition-all duration-300"
-              onClick={nextTestimonial}
-            >
-              <ChevronRight className="h-5 w-5 text-brand-teal" />
-            </button>
-          </div>
-        </div>
+        ))}
       </div>
-    </section>
+
+      {/* Navigation Dots */}
+      <div className="flex justify-center space-x-2 mt-8">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            className={cn(
+              "h-2.5 w-2.5 rounded-full transition-all duration-300",
+              index === activeIndex ? "bg-brand-teal w-6" : "bg-gray-400/40"
+            )}
+            onClick={() => setActiveIndex(index)}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
   );
 };
 

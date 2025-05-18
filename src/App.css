@@ -6,7 +6,9 @@
   padding: 0;
   text-align: center;
 }
-
+header {
+  z-index: 1000; /* Higher than other elements */
+}
 /* Keep only essential animation keyframes */
 @keyframes logo-spin {
   from {
@@ -21,4 +23,446 @@
   .logo.spin {
     animation: logo-spin infinite 20s linear;
   }
+}
+
+/* Premium section specific styles */
+.premium-glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.decorative-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to right, rgba(107, 206, 206, 0.2), rgba(107, 206, 206, 0.8), rgba(107, 206, 206, 0.2));
+  border-radius: 3px;
+}
+
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  transition: all 1s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.shine-effect:hover::after {
+  transform: rotate(45deg) translateY(100%);
+  opacity: 0.3;
+}
+
+/* Holographic effects */
+.holographic-foil {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(107, 206, 206, 0.1) 25%,
+    rgba(142, 215, 198, 0.1) 50%,
+    rgba(174, 217, 224, 0.1) 75%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  background-size: 400% 400%;
+  animation: holographic-shift 15s ease infinite;
+}
+
+@keyframes holographic-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.holographic-glow {
+  background: linear-gradient(
+    45deg,
+    rgba(91, 158, 173, 0.05) 0%,
+    rgba(107, 206, 206, 0.1) 25%,
+    rgba(142, 215, 198, 0.05) 50%,
+    rgba(174, 217, 224, 0.1) 75%,
+    rgba(91, 158, 173, 0.05) 100%
+  );
+  background-size: 200% 200%;
+  animation: holographic-glow 10s ease infinite;
+  filter: blur(8px);
+}
+
+@keyframes holographic-glow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 150%; }
+  100% { background-position: 0% 50%; }
+}
+
+.overlay-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Light effects for premium section */
+.light-ray {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(107, 206, 206, 0.05), transparent);
+  width: 100%;
+  height: 300px;
+  transform: rotate(35deg);
+  filter: blur(15px);
+  animation: light-ray-animation 8s ease-in-out infinite;
+}
+
+.light-ray-1 {
+  top: -100px;
+  left: -200px;
+  animation-delay: 0s;
+}
+
+.light-ray-2 {
+  top: 30%;
+  right: -200px;
+  animation-delay: 2s;
+}
+
+.light-ray-3 {
+  bottom: -100px;
+  left: 30%;
+  animation-delay: 4s;
+}
+
+@keyframes light-ray-animation {
+  0% { transform: rotate(35deg) translateX(-200px); opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 0.8; }
+  100% { transform: rotate(35deg) translateX(calc(100vw + 400px)); opacity: 0; }
+}
+
+.shine-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shine-animation 3s linear infinite;
+  background-size: 200% 200%;
+}
+
+@keyframes shine-animation {
+  0% { background-position: -200% -200%; }
+  100% { background-position: 200% 200%; }
+}
+
+/* Button hover effects */
+.btn-hover-effect {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.btn-hover-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transition: all 0.5s ease;
+}
+
+.btn-hover-effect:hover::before {
+  left: 100%;
+}
+
+/* Gradient text */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #6BCECE, #5B9EAD);
+}
+
+
+
+/* Add these styles to your global CSS file */
+
+/* Holographic and light effects */
+.holographic-glow {
+  background: linear-gradient(
+    45deg,
+    rgba(107, 206, 206, 0.2) 0%,
+    rgba(99, 160, 202, 0.2) 25%,
+    rgba(107, 206, 206, 0.2) 50%,
+    rgba(99, 160, 202, 0.2) 75%,
+    rgba(107, 206, 206, 0.2) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.holographic-foil {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 0,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+.overlay-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Add these styles to your global CSS file */
+
+/* Holographic and light effects */
+.holographic-glow {
+  background: linear-gradient(
+    45deg,
+    rgba(107, 206, 206, 0.2) 0%,
+    rgba(99, 160, 202, 0.2) 25%,
+    rgba(107, 206, 206, 0.2) 50%,
+    rgba(99, 160, 202, 0.2) 75%,
+    rgba(107, 206, 206, 0.2) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.holographic-foil {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.05) 0,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+.overlay-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.premium-glass {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease-out;
+}
+
+.premium-shadow-3d {
+  box-shadow: 
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.perspective-3d {
+  perspective: 1000px;
+}
+
+.perspective-child {
+  transform-style: preserve-3d;
+}
+
+.transform-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.transform-gpu {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Light rays effects */
+.light-ray {
+  position: absolute;
+  background: linear-gradient(
+    45deg,
+    rgba(107, 206, 206, 0.1) 0%,
+    rgba(107, 206, 206, 0) 100%
+  );
+  transform-origin: top left;
+  animation: ray-rotate 12s infinite linear;
+}
+
+.light-ray-1 {
+  top: -50%;
+  left: 20%;
+  width: 150%;
+  height: 200%;
+  transform: rotate(35deg);
+}
+
+.light-ray-2 {
+  top: -30%;
+  left: 40%;
+  width: 100%;
+  height: 150%;
+  transform: rotate(65deg);
+  animation-delay: -3s;
+}
+
+.light-ray-3 {
+  top: 10%;
+  left: -20%;
+  width: 120%;
+  height: 180%;
+  transform: rotate(20deg);
+  animation-delay: -6s;
+}
+
+/* Shine effect on hover */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  opacity: 0;
+  transform: rotate(30deg);
+  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+}
+
+.shine-effect:hover::after {
+  opacity: 1;
+  left: 130%;
+  transition: left 0.7s ease-in-out;
+}
+
+.shine-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateZ(20px);
+}
+
+/* Decorative elements */
+.decorative-line {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, rgba(107, 206, 206, 1), rgba(99, 160, 202, 1));
+  border-radius: 2px;
+}
+
+/* Button hover effect */
+.btn-hover-effect {
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-hover-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(107, 206, 206, 0.8), rgba(45, 76, 128, 0.8));
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-hover-effect:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Custom scrollbar for feature lists */
+.premium-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.premium-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.premium-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(107, 206, 206, 0.5);
+  border-radius: 10px;
+}
+
+/* Animations */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes ray-rotate {
+  0% { transform: rotate(0deg) translateY(0); opacity: 0; }
+  20% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+  80% { opacity: 0.3; }
+  100% { transform: rotate(360deg) translateY(0); opacity: 0; }
+}
+
+@keyframes float-slow {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Animation utilities */
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+html, body {
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }

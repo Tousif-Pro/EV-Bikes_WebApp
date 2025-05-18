@@ -14,8 +14,8 @@ const CTASection = () => {
     <section className="section-spacing relative overflow-hidden" ref={ref}>
       {/* Background elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-brand-mint/20 blur-3xl hero-mask"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-light-blue/20 blur-3xl hero-mask"></div>
+        <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-white"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-white"></div>
       </div>
       
       {/* Decorative elements */}
@@ -88,7 +88,7 @@ const CTASection = () => {
               {/* Right image */}
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1581275363426-2599242c3482?q=80&w=2786&auto=format&fit=crop&ixlib=rb-4.0.3" 
+                  src="/images/b8bcee83-54c5-438b-bb17-004efed4bf59.jpeg" 
                   alt="Electric Bike" 
                   className="rounded-xl w-full h-auto object-cover premium-image shine-effect"
                 />

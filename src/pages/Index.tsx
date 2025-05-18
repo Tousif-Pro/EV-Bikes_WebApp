@@ -1,14 +1,13 @@
-
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import FeaturesSection from "@/components/FeaturesSection";
+// import FeaturesSection from "@/components/FeaturesSection";
 import DesignSection from "@/components/DesignSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import GallerySection from "@/components/GallerySection";
+import TestimonialsSection from "@/components/TestimonialsSection"
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
-
+import PremiumSection from "@/components/PremiumSection";
+// import InnovationSection from "./inovationsection";
 const Index = () => {
   // State to track overall page loading
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,15 +43,17 @@ const Index = () => {
   }, []);
 
   return (
-    <div className={`relative min-h-screen overflow-x-hidden ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
+    <div className={`relative min-h-screen ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
       <Navbar />
       <main className="w-full">
         <HeroSection />
-        <FeaturesSection />
+        {/* <FeaturesSection /> */}
         <DesignSection />
-        <TestimonialsSection />
-        <GallerySection />
+        <PremiumSection />
         <CTASection />
+        {/* <InnovationSection/> */}
+        <TestimonialsSection />
+
       </main>
       <Footer />
     </div>
