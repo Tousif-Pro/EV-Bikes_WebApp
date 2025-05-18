@@ -1,69 +1,43 @@
-# Welcome to your Lovable project
+# ⚡ EV Bike Showcase
 
-## Project info
+A visually immersive and theme-rich EV bike showcase web app built with modern tech. Designed to turn heads and drive user engagement — this platform blends performance, style, and speed just like the bikes it represents.
 
-**URL**: https://lovable.dev/projects/2f60a0ee-2ad6-4f22-af53-947062355c7f
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 Tech Stack
 
-**Use Lovable**
+- ⚛️ **React** – Component-based UI development  
+- ⚡ **Vite** – Lightning-fast build and development  
+- 🟦 **TypeScript** – Type-safe, scalable codebase  
+- 🎨 **Tailwind CSS** – Utility-first CSS with full design control  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2f60a0ee-2ad6-4f22-af53-947062355c7f) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🎯 Features
 
-**Use your preferred IDE**
+- 🌌 **Stunning Themed UI**: Futuristic design tailored for EV experiences  
+- 🖼️ **Responsive Showcase**: Works seamlessly across all devices  
+- ⚙️ **Clean Architecture**: Built with modular and maintainable code  
+- 🚗 **Sleek Animations**: Smooth hover and transition effects for modern appeal  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Follow these steps:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🛠️ Getting Started
 
-# Step 3: Install the necessary dependencies.
-npm i
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/ev-bike-showcase.git
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Navigate into the project
+cd ev-bike-showcase
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/2f60a0ee-2ad6-4f22-af53-947062355c7f) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
